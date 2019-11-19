@@ -6,10 +6,16 @@
 
 >细胞识别后，将每个细胞为中心，分割为单个细胞的小图，使每个小图包含一个细胞，小图统一大小，尽量都能包含完整的细胞即可。由于细胞识别错误，小图中存在错误的细胞（如粘连，模糊等情况），需要去除这些细胞。你们人工对每个细胞小图给于标签（正确的细胞标记1，错误细胞标记0）。利用CNN训练出模型，对每个小图进行打分，最后结合人工标记，画出模型的auc。
 
+### 技术路线
+
+* 样本的切割：正样本（轮廓识别——裁剪——人工标记——保存）与负样本（随机裁剪——过滤——人工标记——保存）
+
+* 神经网络结构：卷积——池化——卷积——池化——Flatten——全连接
+
 ### 原图
 
 <p align="center">
-	<img src="https://github.com/AdeBC/Cell_classification/blob/master/cell.png" alt="Sample"  width="600" height="600">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/cell.png" alt="Sample" width="600" height="600" >
 </p>
 
 ### 细胞识别
