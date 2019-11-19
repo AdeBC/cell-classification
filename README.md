@@ -3,29 +3,8 @@ title: "cell_classification"
 author: "Hui Chong"
 date: "2019/11/14"
 output: html_document
+
 ---
-
-
-```{r set-options, echo=FALSE, cache=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-```
-
-<style type="text/css">
-.main-container {
-  max-width: 750px;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
-
-<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/googlecode.min.css" rel="stylesheet">
-
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<script src="//cdn.bootcss.com/highlightjs-line-numbers.js/1.1.0/highlightjs-line-numbers.min.js"></script>
-<script>hljs.initLineNumbersOnLoad();</script>
 
 ## 需求分解
 
@@ -36,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * 代码实现：
 
-```{python findContours}
+```Python3
 def findContours(image): 
     '''
         返回所有细胞轮廓
@@ -65,7 +44,7 @@ def findContours(image):
 * 将原图分割为统一大小的单个细胞小图，还是使用opencv-python来实现，技术路线为：找轮廓的外接矩形——根据矩形范围筛选轮廓——找矩形的中点——以[x-20:x+20, y-20:y+20]为范围裁剪小图，以列表形式返回
 
 * 有待后续筛选和标记，代码实现为：
-```{python generateTrueCell}
+```Python3
 def generateTrueCell(image, contours):
     '''
         使用40*40的矩形框进行裁剪，并以列表类型返回所有细胞小图
@@ -92,7 +71,7 @@ def generateTrueCell(image, contours):
 * 使用随机数发生器随机产生的点作为40*40矩形框的中点，对原图进行裁剪，再进行人工筛选，形成负样本。以列表形式返回
 
 * 代码实现：
-```{python generateFakeCell}
+```Python3
 def generateFakeCell(image, k):
     images_list      = []
     random.seed      = 5
@@ -108,7 +87,7 @@ def generateFakeCell(image, k):
 * 使用opencv-python对样本的列表进行遍历，对不符合要求的样本进行剔除，将剩余样本以列表形式返回
 
 * 代码实现：
-```{python keepStandardPic}
+```Python3
 def keepStandardPic(images_list):
     '''
         使用for循环进行遍历，依次显示每张图片并进行删除标记
@@ -133,7 +112,7 @@ def keepStandardPic(images_list):
 * 使用tensorflow2.0中的keras模块构建卷积神经网络，使用**两个卷积、两个池化层和全连接层**来搭建一个较为基础的图片分类网络。
 
 * 代码实现
-```{python buildModel}
+```Python3
 def buildModel(x_train):
     model          = tf.keras.Sequential()
     model.add(tf.keras.layers.Conv2D(
@@ -163,7 +142,7 @@ def buildModel(x_train):
 ## 效果展示
 
 ### 0_generateData.py
-```{python generateData, eval=FALSE}
+```Python3
 # 运行于另一台server，因为薛老师的server配置opencv出错了（无法运行cv2.imshow()），需要su权限才能装依赖包。
 
 import cv2
@@ -298,7 +277,7 @@ if __name__ == '__main__':
 <center>非原图，经过亮度调整</center>
 
 ### trainModel.py
-```{python trainModel, eval=FALSE}
+```Python3
 # 运行于薛老师的server。
 
 import cv2
