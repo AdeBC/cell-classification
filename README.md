@@ -1,5 +1,6 @@
 ---
-title: "cell_classification"
+# cell_classification
+
 author: "Hui Chong"
 date: "2019/11/14"
 output: html_document
@@ -9,6 +10,12 @@ output: html_document
 ## 需求分解
 
 >细胞识别后，将每个细胞为中心，分割为单个细胞的小图，使每个小图包含一个细胞，小图统一大小，尽量都能包含完整的细胞即可。由于细胞识别错误，小图中存在错误的细胞（如粘连，模糊等情况），需要去除这些细胞。你们人工对每个细胞小图给于标签（正确的细胞标记1，错误细胞标记0）。利用CNN训练出模型，对每个小图进行打分，最后结合人工标记，画出模型的auc。
+
+### 原图
+
+<p align="left">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/cell.png" alt="Sample"  width="500" height="500">
+</p>
 
 ### 细胞识别
 * 使用opencv-python框架来实现，处理路线为：降噪——滤波——灰度化——二值化——轮廓识别
@@ -266,15 +273,16 @@ if __name__ == '__main__':
     f.close()
 ```
 * 二值化结果展示
-<center>
-![](二值化.png){width=60%}
-</center>
-* 正样本——负样本对照
-<center>
-![](sample.png){width=60%}
-</center>
 
-<center>非原图，经过亮度调整</center>
+<p align="left">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/%E4%BA%8C%E5%80%BC%E5%8C%96.png" alt="Sample"  width="500" height="500">
+</p>
+
+* 正样本——负样本对照
+
+<p align="left">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/sample.png" alt="Sample"  width="500">
+</p>
 
 ### trainModel.py
 ```Python3
@@ -385,9 +393,11 @@ if __name__=="__main__":
 * AUC:  **1.0**
 
 * roc curve
-<center>
-![](roc_curve.png){}
-</center>
+
+
+<p align="left">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/roc_curve.png" alt="Sample"  width="500" height="500">
+</p>
 
 * 测试标签（y_test）和预测的标签（y_prediction）
 ```
