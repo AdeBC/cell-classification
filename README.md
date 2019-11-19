@@ -1,9 +1,4 @@
----
-# cell_classification
-
-author: "Hui Chong"
-date: "2019/11/14"
-output: html_document
+## cell classification
 
 ---
 
@@ -13,8 +8,8 @@ output: html_document
 
 ### 原图
 
-<p align="left">
-	<img src="https://github.com/AdeBC/Cell_classification/blob/master/cell.png" alt="Sample"  width="500" height="500">
+<p align="center">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/cell.png" alt="Sample"  width="600" height="600">
 </p>
 
 ### 细胞识别
@@ -48,7 +43,7 @@ def findContours(image):
 
 ### 分割细胞
 #### 分割正样本
-* 将原图分割为统一大小的单个细胞小图，还是使用opencv-python来实现，技术路线为：找轮廓的外接矩形——根据矩形范围筛选轮廓——找矩形的中点——以[x-20:x+20, y-20:y+20]为范围裁剪小图，以列表形式返回
+* 将原图分割为统一大小的单个细胞小图，还是使用opencv-python来实现，技术路线为：找轮廓的外接矩形——根据矩形范围筛选轮廓——找矩形的中点——以 `[x-20:x+20, y-20:y+20]` 为范围裁剪小图，以列表形式返回
 
 * 有待后续筛选和标记，代码实现为：
 ```Python3
@@ -75,7 +70,7 @@ def generateTrueCell(image, contours):
     return images_list
 ```
 #### 分割负样本
-* 使用随机数发生器随机产生的点作为40*40矩形框的中点，对原图进行裁剪，再进行人工筛选，形成负样本。以列表形式返回
+* 使用随机数发生器随机产生的点作为 `40*40` 矩形框的中点，对原图进行裁剪，再进行人工筛选，形成负样本。以列表形式返回
 
 * 代码实现：
 ```Python3
@@ -274,14 +269,14 @@ if __name__ == '__main__':
 ```
 * 二值化结果展示
 
-<p align="left">
-	<img src="https://github.com/AdeBC/Cell_classification/blob/master/%E4%BA%8C%E5%80%BC%E5%8C%96.png" alt="Sample"  width="500" height="500">
+<p align="center">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/%E4%BA%8C%E5%80%BC%E5%8C%96.png" alt="Sample"  width="600" height="600">
 </p>
 
 * 正样本——负样本对照
 
-<p align="left">
-	<img src="https://github.com/AdeBC/Cell_classification/blob/master/sample.png" alt="Sample"  width="500">
+<p align="center">
+	<img src="https://github.com/AdeBC/Cell_classification/blob/master/sample.png" alt="Sample"  width="600">
 </p>
 
 ### trainModel.py
@@ -395,7 +390,7 @@ if __name__=="__main__":
 * roc curve
 
 
-<p align="left">
+<p align="center">
 	<img src="https://github.com/AdeBC/Cell_classification/blob/master/roc_curve.png" alt="Sample"  width="500" height="500">
 </p>
 
